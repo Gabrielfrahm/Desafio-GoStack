@@ -10,7 +10,6 @@ class User extends Model {
                 email: Sequelize.STRING,
                 password: Sequelize.VIRTUAL, // o tipo vitual é um campo que e preenchido mas nao esta no banco de dados
                 password_hash: Sequelize.STRING,
-                provider: Sequelize.STRING,
             },
             {
                 sequelize,
@@ -24,6 +23,7 @@ class User extends Model {
         return this;
     }
 
+    // verifica as senhas
     checkPassword(password) {
         return bcrypt.compare(password, this.password_hash);
     }
