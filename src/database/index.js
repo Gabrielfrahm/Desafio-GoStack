@@ -1,8 +1,9 @@
 import Sequelize from 'sequelize'; // importando o Sequelize
 import databaseConfig from '../config/database'; // importando as configurações do banco
 import User from '../app/models/User'; // importando o model de User
+import Students from '../app/models/Students';
 
-const models = [User]; // contante que vai ser utizlida  para armazenar todos os models importados em um array
+const models = [User, Students]; // contante que vai ser utizlida  para armazenar todos os models importados em um array
 
 // criação da classe Databas
 class Database {
