@@ -1,6 +1,6 @@
 module.exports = {
     up: (queryInterface, Sequelize) => {
-        return queryInterface.createTable('registration', {
+        return queryInterface.createTable('registrations', {
             id: {
                 type: Sequelize.INTEGER, // typo do campo
                 allowNull: false, // nao permite falso
@@ -12,14 +12,14 @@ module.exports = {
                 references: { model: 'students', key: 'id' }, // referenciando a coluna com os id da tabela files
                 onUpdate: 'CASCADE', // quando for atualizado
                 onDelete: 'SET NULL', // quando for deletado
-                allowNull: true, // e permite falso
+                allowNull: false, // e permite falso
             },
             plan_id: {
                 type: Sequelize.INTEGER,
                 references: { model: 'plans', key: 'id' }, // referenciando a coluna com os id da tabela files
                 onUpdate: 'CASCADE', // quando for atualizado
                 onDelete: 'SET NULL', // quando for deletado
-                allowNull: true, // e permite falso
+                allowNull: false, // e permite falso
             },
             start_date: {
                 type: Sequelize.DATE,
@@ -46,6 +46,6 @@ module.exports = {
     },
 
     down: (queryInterface) => {
-        return queryInterface.dropTable('registration');
+        return queryInterface.dropTable('registrations');
     },
 };
