@@ -4,8 +4,9 @@ import User from '../app/models/User'; // importando o model de User
 import Students from '../app/models/Students';
 import Plan from '../app/models/Plan';
 import Registration from '../app/models/Registration';
+import Checkins from '../app/models/Checkins';
 
-const models = [User, Students, Plan, Registration]; // contante que vai ser utizlida  para armazenar todos os models importados em um array
+const models = [User, Students, Plan, Registration, Checkins]; // contante que vai ser utizlida  para armazenar todos os models importados em um array
 
 // criação da classe Databas
 class Database {
