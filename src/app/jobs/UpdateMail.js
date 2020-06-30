@@ -2,7 +2,7 @@ import Mail from '../../lib/mail';
 
 class UpdateMail {
     get key() {
-        return 'UpdatedMail';
+        return 'UpdateMail';
     }
 
     async handle({ data }) {
@@ -11,7 +11,7 @@ class UpdateMail {
         await Mail.sendMail({
             to: `${registration.student_id} <${registration.student_id}>`,
             subject: 'Rematricula Realizada',
-            template: 'updatedMail',
+            template: 'updateMail',
             context: {
                 name: registration.student_id,
                 email: registration.student_id,

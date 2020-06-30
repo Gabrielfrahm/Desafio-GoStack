@@ -7,7 +7,7 @@ import Students from '../models/Students';
 import Plan from '../models/Plan';
 import Queue from '../../lib/Queue';
 import CreateMail from '../jobs/CreatedMail';
-import UpdatedMail from '../jobs/UpdatedMail';
+import UpdateMail from '../jobs/UpdateMail';
 
 class RegistrationController {
     async index(req, res) {
@@ -137,7 +137,7 @@ class RegistrationController {
 
         await registration.update(up);
 
-        await Queue.add(UpdatedMail.key, {
+        await Queue.add(UpdateMail.key, {
             registration,
             plan,
             formatDate,

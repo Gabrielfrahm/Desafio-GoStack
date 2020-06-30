@@ -8,8 +8,29 @@ import {
 import { Op } from 'sequelize';
 import Checkins from '../models/Checkins';
 import Registration from '../models/Registration';
+import Students from '../models/Students';
 
 class CheckinsController {
+    async index(req, res) {
+        const isStudent = await Students.findByPk(req.params.id);
+
+        if (!isStudent) {
+            return res.status(401).json({ error: 'Student not fuond ' });
+        }
+
+        const checkins = await Checkins.findAll({
+            where: {
+                student_id: req.params.id,
+            },
+        });
+
+        if (!checkins) {
+            return res.status(401).json({ error: 'Student not fuond ' });
+        }
+
+        return res.json(checkins);
+    }
+
     async store(req, res) {
         // verifica se o aluno tem matricula
         const registration = await Registration.findOne({

@@ -1,9 +1,10 @@
 import Bee from 'bee-queue'; // import da Bee gerenciador de filas
 import CreatedMail from '../app/jobs/CreatedMail'; //
-import UpdatedMail from '../app/jobs/UpdatedMail'; //
+import UpdateMail from '../app/jobs/UpdateMail'; //
+import Answer from '../app/jobs/Answer'; //
 import redisConfig from '../config/redis';
 
-const jobs = [UpdatedMail, CreatedMail]; // jobs
+const jobs = [UpdateMail, CreatedMail, Answer]; // jobs
 
 // criando a fila
 class Queue {
