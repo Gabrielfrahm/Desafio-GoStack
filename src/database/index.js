@@ -6,8 +6,17 @@ import Plan from '../app/models/Plan';
 import Registration from '../app/models/Registration';
 import Checkins from '../app/models/Checkins';
 import Help_orders from '../app/models/Help_orders';
+import File from '../app/models/File';
 
-const models = [User, Students, Plan, Registration, Checkins, Help_orders]; // contante que vai ser utizlida  para armazenar todos os models importados em um array
+const models = [
+    User,
+    Students,
+    Plan,
+    Registration,
+    Checkins,
+    Help_orders,
+    File,
+]; // contante que vai ser utizlida  para armazenar todos os models importados em um array
 
 // criação da classe Databas
 class Database {

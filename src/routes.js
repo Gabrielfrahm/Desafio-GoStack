@@ -1,5 +1,7 @@
 import { Router } from 'express';
-
+import multer from 'multer';
+import multerConfig from './config/multer';
+import FileController from './app/controllers/FileController';
 import authMiddleware from './app/middlewares/auth';
 import SessionController from './app/controllers/SessionController';
 import CheckinsController from './app/controllers/CheckinsController';
@@ -10,6 +12,7 @@ import HelpController from './app/controllers/HelpController';
 import AnswerControll from './app/controllers/AnswerControll';
 
 const routes = new Router();
+const upload = multer(multerConfig);
 
 routes.get('/', (req, res) => {
     res.json('teste');
@@ -26,6 +29,8 @@ routes.post('/session', SessionController.store); // rota que cria a sessão de 
 routes.use(authMiddleware); // middleware de verificação de login
 routes.post('/users', StudentsController.store); // rota apara criar aluno
 routes.put('/users', StudentsController.update); // rota para modificar aluno
+
+routes.post('/files', upload.single('file'), FileController.store); // rota para enviar os arquivos para o banco
 
 routes.post('/plans', PlansController.store); // rota para criar plano
 routes.put('/plans/:id', PlansController.update); // rota para alterar os planos
