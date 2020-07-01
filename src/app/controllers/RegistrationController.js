@@ -7,7 +7,7 @@ import Students from '../models/Students';
 import Plan from '../models/Plan';
 import Queue from '../../lib/Queue';
 import CreateMail from '../jobs/CreatedMail';
-import UpdateMail from '../jobs/UpdateMail';
+import RegisterUp from '../jobs/RegisterUp';
 
 class RegistrationController {
     async index(req, res) {
@@ -135,16 +135,18 @@ class RegistrationController {
 
         const up = { plan_id, start_date: new Date(), end_date, price };
 
-        await registration.update(up);
+        const re = await registration.update(up);
 
-        await Queue.add(UpdateMail.key, {
-            registration,
+        const isStudent = await Students.findByPk(registration.student_id);
+
+        await Queue.add(RegisterUp.key, {
+            isStudent,
             plan,
             formatDate,
             price,
         });
 
-        return res.json(up);
+        return res.json(re);
     }
 
     async delete(req, res) {
